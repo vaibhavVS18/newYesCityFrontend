@@ -24,11 +24,9 @@ const CitySearch: React.FC = () => {
       try {
         const token = localStorage.getItem("token");
 
-        const res = await fetch("https://new-yes-city-backend.vercel.app/api/city", {
-          headers: {
-            "Content-Type": "application/json",
-            ...(token ? { Authorization: `Bearer ${token}` } : {}),
-          },
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/city`, {
+          method: 'GET',
+          credentials: 'include',
         });
 
         const data = await res.json();
